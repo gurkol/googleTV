@@ -21,7 +21,10 @@
       "Bash(brew info:*)",
       "Bash(riverRider/local.properties)",
       "Bash(cat:*)",
-      "Bash(./gradlew clean:*)"
+      "Bash(./gradlew clean:*)",
+      "Bash(diamantovyMuz/app/src/main/res/drawable/banner.png)",
+      "Bash(diamantovyMuz/app/src/main/res/mipmap/ic_launcher.png)",
+      "Bash(diamantovyMuz/local.properties)"
     ],
     "deny": [],
     "ask": []

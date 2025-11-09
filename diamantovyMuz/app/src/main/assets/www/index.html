@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamantový Muž</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="hud">
+            <div class="hud-item">Level: <span id="level">1</span></div>
+            <div class="hud-item">Diamanty: <span id="diamonds">0</span>/<span id="diamondsNeeded">10</span></div>
+            <div class="hud-item">Životy: <span id="lives">3</span></div>
+            <div class="hud-item">Skóre: <span id="score">0</span></div>
+        </div>
+        <canvas id="gameCanvas" width="640" height="640"></canvas>
+        <div id="gameOver" class="hidden">
+            <h1>GAME OVER</h1>
+            <p>Finální skóre: <span id="finalScore">0</span></p>
+            <p>Dosažený level: <span id="finalLevel">1</span></p>
+            <button id="restartBtn">Hrát znovu</button>
+        </div>
+        <div id="levelComplete" class="hidden">
+            <h1>LEVEL DOKONČEN!</h1>
+            <p>Diamanty: <span id="levelDiamonds">0</span></p>
+            <p>Bonus: <span id="levelBonus">0</span></p>
+            <button id="nextLevelBtn">Další level</button>
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+</body>
+</html>

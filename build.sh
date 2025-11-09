@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Build script for River Rider APK
+# Build script for Google TV Games
 set -e
 
-echo "🎮 Building River Rider APK..."
+echo "🎮 Building Google TV Games..."
 echo ""
 
 # Check for Android SDK
@@ -14,6 +14,9 @@ if [ -z "$ANDROID_HOME" ] && [ -z "$ANDROID_SDK_ROOT" ]; then
         echo "✓ Found Android SDK at: $ANDROID_HOME"
     elif [ -d "$HOME/Android/Sdk" ]; then
         export ANDROID_HOME="$HOME/Android/Sdk"
+        echo "✓ Found Android SDK at: $ANDROID_HOME"
+    elif [ -d "/opt/homebrew/share/android-commandlinetools" ]; then
+        export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
         echo "✓ Found Android SDK at: $ANDROID_HOME"
     else
         echo "❌ Error: Android SDK not found!"
@@ -35,44 +38,69 @@ else
     echo "✓ Using Android SDK from environment variable"
 fi
 
-# Create local.properties if it doesn't exist
-cd riverRider
-if [ ! -f "local.properties" ]; then
-    echo "sdk.dir=$ANDROID_HOME" > local.properties
-    echo "✓ Created local.properties"
-fi
+# Function to build a project
+build_project() {
+    local PROJECT_DIR=$1
+    local APK_NAME=$2
 
-# Clean previous builds
-echo "🧹 Cleaning previous builds..."
-if [ -d "build" ]; then
-    rm -rf build
-fi
-if [ -d "app/build" ]; then
-    rm -rf app/build
-fi
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "Building $APK_NAME..."
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-# Build debug APK using gradlew
-echo "🔨 Building debug APK..."
-./gradlew assembleDebug
+    cd "$PROJECT_DIR"
 
-# Find the generated APK
-APK_PATH=$(find app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+    # Create local.properties if it doesn't exist
+    if [ ! -f "local.properties" ]; then
+        echo "sdk.dir=$ANDROID_HOME" > local.properties
+        echo "✓ Created local.properties"
+    fi
 
-if [ -z "$APK_PATH" ]; then
-    echo "❌ Error: APK not found!"
-    exit 1
-fi
+    # Clean previous builds
+    echo "🧹 Cleaning previous builds..."
+    if [ -d "build" ]; then
+        rm -rf build
+    fi
+    if [ -d "app/build" ]; then
+        rm -rf app/build
+    fi
 
-# Copy APK to root directory
-echo "📦 Copying APK to root directory..."
-cp "$APK_PATH" ../riverRider.apk
+    # Build debug APK using gradlew
+    echo "🔨 Building debug APK..."
+    ./gradlew assembleDebug
 
-cd ..
+    # Find the generated APK
+    APK_PATH=$(find app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+
+    if [ -z "$APK_PATH" ]; then
+        echo "❌ Error: APK not found!"
+        cd ..
+        return 1
+    fi
+
+    # Copy APK to root directory
+    echo "📦 Copying APK to root directory..."
+    cp "$APK_PATH" "../$APK_NAME"
+
+    cd ..
+
+    echo "✅ Build complete! APK created: $APK_NAME"
+}
+
+# Build River Rider
+build_project "riverRider" "riverRider.apk"
+
+# Build Diamantový Muž
+build_project "diamantovyMuz" "diamantovyMuz.apk"
 
 echo ""
-echo "✅ Build complete! APK created: riverRider.apk"
-ls -lh riverRider.apk
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "✅ ALL BUILDS COMPLETE!"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+ls -lh *.apk
 echo ""
 echo "To install on your device:"
 echo "  adb install riverRider.apk"
+echo "  adb install diamantovyMuz.apk"
 echo ""
