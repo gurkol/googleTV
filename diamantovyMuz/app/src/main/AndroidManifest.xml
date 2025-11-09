@@ -15,6 +15,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Diamantový Muž"
         android:banner="@drawable/banner"
+        android:isGame="true"
         android:theme="@style/Theme.Leanback">
         <activity
             android:name=".MainActivity"

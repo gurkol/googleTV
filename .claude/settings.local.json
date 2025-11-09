@@ -24,7 +24,8 @@
       "Bash(./gradlew clean:*)",
       "Bash(diamantovyMuz/app/src/main/res/drawable/banner.png)",
       "Bash(diamantovyMuz/app/src/main/res/mipmap/ic_launcher.png)",
-      "Bash(diamantovyMuz/local.properties)"
+      "Bash(diamantovyMuz/local.properties)",
+      "Bash(./build.sh)"
     ],
     "deny": [],
     "ask": []
