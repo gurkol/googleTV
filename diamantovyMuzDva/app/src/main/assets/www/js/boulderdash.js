@@ -735,17 +735,17 @@ Boulderdash = function() {
     sprites.src = 'images/sprites.png';
   };
 
-  function // showStats() {
-    // stats.domElement.id = 'stats';
-    Dom.get('boulderdash').appendChild(// stats.domElement);
-  };
+  // function showStats() {
+  //   stats.domElement.id = 'stats';
+  //   Dom.get('boulderdash').appendChild(stats.domElement);
+  // };
 
   function addEvents() {
     document.addEventListener('keydown', keydown, false);
     document.addEventListener('keyup',   keyup,   false);
     window.addEventListener('resize', function() { render.resize() }, false);
-    Dom.get('prev').addEventListener('click', function() { game.prev(); }, false);
-    Dom.get('next').addEventListener('click', function() { game.next(); }, false);
+    // Dom.get('prev').addEventListener('click', function() { game.prev(); }, false);
+    // Dom.get('next').addEventListener('click', function() { game.next(); }, false);
   };
 
   function keydown(ev) {
