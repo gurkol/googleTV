@@ -1,0 +1,12 @@
+com.velkyamerickyZavod.app-leanback-1.0.0-0 /Users/mq/.gradle/caches/transforms-3/37f8dfdb6d63651f779fcd3345409e17/transformed/leanback-1.0.0/res
+com.velkyamerickyZavod.app-media-1.0.0-1 /Users/mq/.gradle/caches/transforms-3/77a1f8cef58d1e081edca8a7ea47eed8/transformed/media-1.0.0/res
+com.velkyamerickyZavod.app-core-1.0.0-2 /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/res
+com.velkyamerickyZavod.app-coordinatorlayout-1.0.0-3 /Users/mq/.gradle/caches/transforms-3/8c82aca2bcfe86154df8c1260c75a977/transformed/coordinatorlayout-1.0.0/res
+com.velkyamerickyZavod.app-recyclerview-1.0.0-4 /Users/mq/.gradle/caches/transforms-3/f97b8f08c50827a3e8ed9b2d7b653ad7/transformed/recyclerview-1.0.0/res
+com.velkyamerickyZavod.app-pngs-5 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/build/generated/res/pngs/debug
+com.velkyamerickyZavod.app-resValues-6 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/build/generated/res/resValues/debug
+com.velkyamerickyZavod.app-packageDebugResources-7 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.velkyamerickyZavod.app-packageDebugResources-8 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.velkyamerickyZavod.app-merged_res-9 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/build/intermediates/merged_res/debug
+com.velkyamerickyZavod.app-debug-10 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/src/debug/res
+com.velkyamerickyZavod.app-main-11 /Users/mq/DEVEL/claude/googleTV/velkyAmerickyZavod/app/src/main/res

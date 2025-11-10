@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.diamantovymuzDva.app-merged_res-9:/drawable_banner.png.flat",
+        "source": "com.diamantovymuzDva.app-main-11:/drawable/banner.png"
+    },
+    {
+        "merged": "com.diamantovymuzDva.app-merged_res-9:/mipmap_ic_launcher.png.flat",
+        "source": "com.diamantovymuzDva.app-main-11:/mipmap/ic_launcher.png"
+    }
+]
