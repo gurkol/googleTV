@@ -1,0 +1,159 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:2:1-32:12
+MERGED from [androidx.leanback:leanback:1.0.0] /Users/mq/.gradle/caches/transforms-3/37f8dfdb6d63651f779fcd3345409e17/transformed/leanback-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/mq/.gradle/caches/transforms-3/172a0a4ef9884a4709d0a980dac9ffa3/transformed/fragment-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/mq/.gradle/caches/transforms-3/f97b8f08c50827a3e8ed9b2d7b653ad7/transformed/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/mq/.gradle/caches/transforms-3/c5e3865947bfa6e36e34bcc1658065c4/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/mq/.gradle/caches/transforms-3/77a1f8cef58d1e081edca8a7ea47eed8/transformed/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/mq/.gradle/caches/transforms-3/437c0397eb42c55c206688117aabcce5/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mq/.gradle/caches/transforms-3/9d0a00bd227a16a410171bd911cf5380/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/8c82aca2bcfe86154df8c1260c75a977/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/24b91814b670652ae0acad03da7f04c0/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/d66d9a0f344d7e3ac2315ca25abad367/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/mq/.gradle/caches/transforms-3/774d934dc5fc103b0aa49e49ebe0913f/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/88a49dfeaeaf0bc187aeae6f8b15a8eb/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/mq/.gradle/caches/transforms-3/0122570ccc98dc7e14b38b955099187e/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/mq/.gradle/caches/transforms-3/5904d92289e7383d65783ec778e35607/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.0] /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/mq/.gradle/caches/transforms-3/c644ca6b557fefe3bd99a6800afd3c84/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/mq/.gradle/caches/transforms-3/c0e33c913a59a7802791fec37f1aef85/transformed/lifecycle-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mq/.gradle/caches/transforms-3/80795482d510aea0280b6f569c66f622/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mq/.gradle/caches/transforms-3/f7e55f0b7d51b1e0705217df89e1a1ec/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/mq/.gradle/caches/transforms-3/d5fcbc63edc16961cc5049394950a1fd/transformed/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mq/.gradle/caches/transforms-3/b9b166e54f256407989777e0c408295d/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/mq/.gradle/caches/transforms-3/04d4eb17c2202ac25f3a5b164c02e1db/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/mq/.gradle/caches/transforms-3/ba35ba1e309654ed76b1327714691ec5/transformed/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/mq/.gradle/caches/transforms-3/7ede2c6e382deb6846f6322917066c4e/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/mq/.gradle/caches/transforms-3/9b70b6fbfe457c0ebd403a60e03f69e0/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/mq/.gradle/caches/transforms-3/b145600d195c398052665c6f62ff654a/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:2:11-69
+uses-feature#android.hardware.touchscreen
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:4:5-6:36
+	android:required
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:6:9-33
+	android:name
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:5:9-52
+uses-feature#android.software.leanback
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:7:5-9:35
+	android:required
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:9:9-32
+	android:name
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:8:9-49
+uses-permission#android.permission.INTERNET
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:11:22-64
+application
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:13:5-30:19
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:13:5-30:19
+MERGED from [androidx.core:core:1.0.0] /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.0] /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/mq/.gradle/caches/transforms-3/c644ca6b557fefe3bd99a6800afd3c84/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/mq/.gradle/caches/transforms-3/c644ca6b557fefe3bd99a6800afd3c84/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:22:5-23:19
+	android:extractNativeLibs
+		INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.0] /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/AndroidManifest.xml:22:18-86
+	android:label
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:16:9-41
+	android:icon
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:15:9-43
+	android:allowBackup
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:14:9-35
+	android:banner
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:17:9-42
+	android:theme
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:19:9-46
+	android:isGame
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:18:9-30
+activity#com.diamantovymuzDva.MainActivity
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:20:9-29:20
+	android:screenOrientation
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:23:13-50
+	android:exported
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:22:13-36
+	android:configChanges
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:24:13-74
+	android:name
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:21:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LEANBACK_LAUNCHER
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:25:13-28:29
+action#android.intent.action.MAIN
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:26:17-69
+	android:name
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:26:25-66
+category#android.intent.category.LEANBACK_LAUNCHER
+ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:27:17-86
+	android:name
+		ADDED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml:27:27-83
+uses-sdk
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+MERGED from [androidx.leanback:leanback:1.0.0] /Users/mq/.gradle/caches/transforms-3/37f8dfdb6d63651f779fcd3345409e17/transformed/leanback-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.leanback:leanback:1.0.0] /Users/mq/.gradle/caches/transforms-3/37f8dfdb6d63651f779fcd3345409e17/transformed/leanback-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/mq/.gradle/caches/transforms-3/172a0a4ef9884a4709d0a980dac9ffa3/transformed/fragment-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /Users/mq/.gradle/caches/transforms-3/172a0a4ef9884a4709d0a980dac9ffa3/transformed/fragment-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/mq/.gradle/caches/transforms-3/f97b8f08c50827a3e8ed9b2d7b653ad7/transformed/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/mq/.gradle/caches/transforms-3/f97b8f08c50827a3e8ed9b2d7b653ad7/transformed/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/mq/.gradle/caches/transforms-3/c5e3865947bfa6e36e34bcc1658065c4/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/mq/.gradle/caches/transforms-3/c5e3865947bfa6e36e34bcc1658065c4/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/mq/.gradle/caches/transforms-3/77a1f8cef58d1e081edca8a7ea47eed8/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/mq/.gradle/caches/transforms-3/77a1f8cef58d1e081edca8a7ea47eed8/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/mq/.gradle/caches/transforms-3/437c0397eb42c55c206688117aabcce5/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/mq/.gradle/caches/transforms-3/437c0397eb42c55c206688117aabcce5/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mq/.gradle/caches/transforms-3/9d0a00bd227a16a410171bd911cf5380/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/mq/.gradle/caches/transforms-3/9d0a00bd227a16a410171bd911cf5380/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/8c82aca2bcfe86154df8c1260c75a977/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/8c82aca2bcfe86154df8c1260c75a977/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/24b91814b670652ae0acad03da7f04c0/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/24b91814b670652ae0acad03da7f04c0/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/d66d9a0f344d7e3ac2315ca25abad367/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/d66d9a0f344d7e3ac2315ca25abad367/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/mq/.gradle/caches/transforms-3/774d934dc5fc103b0aa49e49ebe0913f/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/mq/.gradle/caches/transforms-3/774d934dc5fc103b0aa49e49ebe0913f/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/88a49dfeaeaf0bc187aeae6f8b15a8eb/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/mq/.gradle/caches/transforms-3/88a49dfeaeaf0bc187aeae6f8b15a8eb/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/mq/.gradle/caches/transforms-3/0122570ccc98dc7e14b38b955099187e/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/mq/.gradle/caches/transforms-3/0122570ccc98dc7e14b38b955099187e/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/mq/.gradle/caches/transforms-3/5904d92289e7383d65783ec778e35607/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/mq/.gradle/caches/transforms-3/5904d92289e7383d65783ec778e35607/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] /Users/mq/.gradle/caches/transforms-3/8aaa59d595fd6f448681a6388b9c0f28/transformed/core-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/mq/.gradle/caches/transforms-3/c644ca6b557fefe3bd99a6800afd3c84/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/mq/.gradle/caches/transforms-3/c644ca6b557fefe3bd99a6800afd3c84/transformed/versionedparcelable-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/mq/.gradle/caches/transforms-3/c0e33c913a59a7802791fec37f1aef85/transformed/lifecycle-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/mq/.gradle/caches/transforms-3/c0e33c913a59a7802791fec37f1aef85/transformed/lifecycle-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mq/.gradle/caches/transforms-3/80795482d510aea0280b6f569c66f622/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/mq/.gradle/caches/transforms-3/80795482d510aea0280b6f569c66f622/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mq/.gradle/caches/transforms-3/f7e55f0b7d51b1e0705217df89e1a1ec/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/mq/.gradle/caches/transforms-3/f7e55f0b7d51b1e0705217df89e1a1ec/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/mq/.gradle/caches/transforms-3/d5fcbc63edc16961cc5049394950a1fd/transformed/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/mq/.gradle/caches/transforms-3/d5fcbc63edc16961cc5049394950a1fd/transformed/lifecycle-viewmodel-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mq/.gradle/caches/transforms-3/b9b166e54f256407989777e0c408295d/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/mq/.gradle/caches/transforms-3/b9b166e54f256407989777e0c408295d/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/mq/.gradle/caches/transforms-3/04d4eb17c2202ac25f3a5b164c02e1db/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/mq/.gradle/caches/transforms-3/04d4eb17c2202ac25f3a5b164c02e1db/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/mq/.gradle/caches/transforms-3/ba35ba1e309654ed76b1327714691ec5/transformed/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/mq/.gradle/caches/transforms-3/ba35ba1e309654ed76b1327714691ec5/transformed/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/mq/.gradle/caches/transforms-3/7ede2c6e382deb6846f6322917066c4e/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/mq/.gradle/caches/transforms-3/7ede2c6e382deb6846f6322917066c4e/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/mq/.gradle/caches/transforms-3/9b70b6fbfe457c0ebd403a60e03f69e0/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/mq/.gradle/caches/transforms-3/9b70b6fbfe457c0ebd403a60e03f69e0/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/mq/.gradle/caches/transforms-3/b145600d195c398052665c6f62ff654a/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/mq/.gradle/caches/transforms-3/b145600d195c398052665c6f62ff654a/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/mq/DEVEL/claude/googleTV/diamantovyMuzDva/app/src/main/AndroidManifest.xml

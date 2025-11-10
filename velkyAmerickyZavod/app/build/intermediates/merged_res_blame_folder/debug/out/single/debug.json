@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.velkyamerickyZavod.app-merged_res-9:/mipmap_ic_launcher.png.flat",
+        "source": "com.velkyamerickyZavod.app-main-11:/mipmap/ic_launcher.png"
+    },
+    {
+        "merged": "com.velkyamerickyZavod.app-merged_res-9:/drawable_banner.png.flat",
+        "source": "com.velkyamerickyZavod.app-main-11:/drawable/banner.png"
+    }
+]

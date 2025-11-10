@@ -1,0 +1,102 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ugh"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-feature
+11-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:4:5-90
+12        android:name="android.hardware.touchscreen"
+12-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:4:19-62
+13        android:required="false" />
+13-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:4:63-87
+14    <uses-feature
+14-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:5:5-86
+15        android:name="android.software.leanback"
+15-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:5:19-59
+16        android:required="true" />
+16-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:5:60-83
+17
+18    <uses-permission android:name="android.permission.INTERNET" />
+18-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:7:5-67
+18-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:7:22-64
+19
+20    <permission
+20-->[androidx.core:core:1.9.0] /Users/mq/.gradle/caches/transforms-3/82b5059cd37f14972f51d794c4172e40/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+21        android:name="com.ugh.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+21-->[androidx.core:core:1.9.0] /Users/mq/.gradle/caches/transforms-3/82b5059cd37f14972f51d794c4172e40/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+22        android:protectionLevel="signature" />
+22-->[androidx.core:core:1.9.0] /Users/mq/.gradle/caches/transforms-3/82b5059cd37f14972f51d794c4172e40/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+23
+24    <uses-permission android:name="com.ugh.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+24-->[androidx.core:core:1.9.0] /Users/mq/.gradle/caches/transforms-3/82b5059cd37f14972f51d794c4172e40/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+24-->[androidx.core:core:1.9.0] /Users/mq/.gradle/caches/transforms-3/82b5059cd37f14972f51d794c4172e40/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+25
+26    <application
+26-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:9:5-26:19
+27        android:allowBackup="true"
+27-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:10:9-35
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.9.0] /Users/mq/.gradle/caches/transforms-3/82b5059cd37f14972f51d794c4172e40/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+29        android:banner="@drawable/banner"
+29-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:13:9-42
+30        android:debuggable="true"
+31        android:extractNativeLibs="true"
+32        android:icon="@mipmap/ic_launcher"
+32-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:11:9-43
+33        android:isGame="true"
+33-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:14:9-30
+34        android:label="Ugh!"
+34-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:12:9-29
+35        android:theme="@style/Theme.Leanback" >
+35-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:15:9-46
+36        <activity
+36-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:16:9-25:20
+37            android:name="com.ugh.MainActivity"
+37-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:17:13-41
+38            android:configChanges="orientation|keyboardHidden|screenSize"
+38-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:20:13-74
+39            android:exported="true"
+39-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:18:13-36
+40            android:screenOrientation="landscape" >
+40-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:19:13-50
+41            <intent-filter>
+41-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:21:13-24:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:22:17-69
+42-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:22:25-66
+43
+44                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+44-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:23:17-86
+44-->/Users/mq/DEVEL/claude/googleTV/ugh/app/src/main/AndroidManifest.xml:23:27-83
+45            </intent-filter>
+46        </activity>
+47
+48        <provider
+48-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+49            android:name="androidx.startup.InitializationProvider"
+49-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+50            android:authorities="com.ugh.androidx-startup"
+50-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+51            android:exported="false" >
+51-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+52            <meta-data
+52-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+53                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+53-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+54                android:value="androidx.startup" />
+54-->[androidx.emoji2:emoji2:1.2.0] /Users/mq/.gradle/caches/transforms-3/0408d6b75d98f38ed814b680bd0d1b8e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+55            <meta-data
+55-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mq/.gradle/caches/transforms-3/7dbc7c09340c78638486ab83500a8e22/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+56                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+56-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mq/.gradle/caches/transforms-3/7dbc7c09340c78638486ab83500a8e22/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+57                android:value="androidx.startup" />
+57-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mq/.gradle/caches/transforms-3/7dbc7c09340c78638486ab83500a8e22/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+58        </provider>
+59    </application>
+60
+61</manifest>

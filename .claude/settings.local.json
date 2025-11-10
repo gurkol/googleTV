@@ -25,7 +25,15 @@
       "Bash(diamantovyMuz/app/src/main/res/drawable/banner.png)",
       "Bash(diamantovyMuz/app/src/main/res/mipmap/ic_launcher.png)",
       "Bash(diamantovyMuz/local.properties)",
-      "Bash(./build.sh)"
+      "Bash(./build.sh)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "Bash(velkyAmerickyZavod/app/src/main/res/drawable/banner.png)",
+      "Bash(velkyAmerickyZavod/app/src/main/res/mipmap/ic_launcher.png)",
+      "Bash(git reset:*)",
+      "Bash(diamantovyMuzDva/app/src/main/res/drawable/banner.png)",
+      "Bash(diamantovyMuzDva/app/src/main/res/mipmap/ic_launcher.png)",
+      "WebSearch",
+      "Bash(local.properties)"
     ],
     "deny": [],
     "ask": []

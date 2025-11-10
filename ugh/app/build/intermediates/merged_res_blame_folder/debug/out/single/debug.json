@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.ugh.app-merged_res-24:/mipmap_ic_launcher.png.flat",
+        "source": "com.ugh.app-main-26:/mipmap/ic_launcher.png"
+    },
+    {
+        "merged": "com.ugh.app-merged_res-24:/drawable_banner.png.flat",
+        "source": "com.ugh.app-main-26:/drawable/banner.png"
+    }
+]
