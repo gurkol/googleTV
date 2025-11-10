@@ -1,0 +1,59 @@
+/* Styles pro Velký Americký Závod */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameCanvas {
+    border: 2px solid #FFD700;
+    background: #000;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+}
+
+/* Google TV optimizations */
+@media (orientation: landscape) {
+    #gameCanvas {
+        width: 100vw;
+        height: auto;
+    }
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Focus styles for D-pad navigation */
+button:focus,
+canvas:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 4px;
+}

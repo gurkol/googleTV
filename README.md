@@ -24,6 +24,17 @@ Kolekce klasických retro her přenesených do pixelartového stylu pro **Google
 
 [📖 Dokumentace Diamantový Muž](diamantovyMuz/README.md)
 
+### 3. Velký Americký Závod 🏁🇺🇸
+**Epický top-down racing game napříč celou Amerikou**
+
+- 🗺️ Všech **50 amerických států** - kompletní cesta!
+- 🌨️ **8 různých prostředí** - sníh, pouště, hory, Florida...
+- 🚗 **Dynamická fyzika** - kluzkost, aquaplaning, stoupání
+- ⛽ **Tankování paliva** - strategické plánování trasy
+- 🎯 Progresivní obtížnost - každý stát je výzva!
+
+[📖 Dokumentace Velký Americký Závod](velkyAmerickyZavod/README.md)
+
 ## ⚡ Quick Start
 
 ### Instalace her na Google TV
@@ -38,6 +49,7 @@ adb connect <IP_adresa_vašeho_Google_TV>
 # Nainstalujte hry
 adb install riverRider.apk
 adb install diamantovyMuz.apk
+adb install velkyAmerickyZavod.apk
 ```
 
 ### Hry se automaticky objeví v sekci "Games" na vašem Google TV! 🎮
@@ -167,6 +179,19 @@ googleTV/
 │   ├── build.gradle
 │   └── README.md
 │
+├── velkyAmerickyZavod/      # Cross-Country Racing
+│   ├── app/                 # Android projekt
+│   │   └── src/main/
+│   │       ├── java/        # MainActivity
+│   │       ├── res/         # Ikony, bannery
+│   │       └── assets/www/  # HTML5 hra
+│   ├── www/                 # Webová verze
+│   │   └── js/
+│   │       ├── engine/      # Modulární engine
+│   │       └── states/      # 50 US států
+│   ├── build.gradle
+│   └── README.md
+│
 ├── build.sh                 # Master build skript
 ├── README.md                # Tento soubor
 └── .gitignore
@@ -191,6 +216,11 @@ googleTV/
 - **Bez externích souborů** - vše v kódu
 
 ## 🚀 Roadmap
+
+### Aktuální stav
+- ✅ **River Rider** - River Raid klon (HOTOVO!)
+- ✅ **Diamantový Muž** - Boulder Dash klon (HOTOVO!)
+- ✅ **Velký Americký Závod** - Cross-Country Racing (HOTOVO!)
 
 ### Plánované hry
 - [ ] **PacMan klon** - klasická honička
@@ -244,6 +274,7 @@ Příspěvky jsou vítány!
 |-----|-----------|-------------|
 | River Rider | ~4.0 MB | TBD |
 | Diamantový Muž | ~4.0 MB | TBD |
+| Velký Americký Závod | ~1.7 MB | TBD |
 
 ## 🐛 Řešení problémů
 

@@ -93,6 +93,9 @@ build_project "riverRider" "riverRider.apk"
 # Build Diamantový Muž
 build_project "diamantovyMuz" "diamantovyMuz.apk"
 
+# Build Velký Americký Závod
+build_project "velkyAmerickyZavod" "velkyAmerickyZavod.apk"
+
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "✅ ALL BUILDS COMPLETE!"
@@ -103,4 +106,5 @@ echo ""
 echo "To install on your device:"
 echo "  adb install riverRider.apk"
 echo "  adb install diamantovyMuz.apk"
+echo "  adb install velkyAmerickyZavod.apk"
 echo ""
