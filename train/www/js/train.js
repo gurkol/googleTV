@@ -1,6 +1,6 @@
 // Vlak - Train Puzzle Game
 // JavaScript implementation of the classic Czech game by Miroslav Němeček (1993)
-// Sokoban-style puzzle game
+// Collect wagons with your locomotive!
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -9,11 +9,10 @@ const ctx = canvas.getContext('2d');
 const GAME_WIDTH = 640;
 const GAME_HEIGHT = 480;
 const TILE_SIZE = 24;
-const TRAIN_HEIGHT = 32;
 
 // Set canvas size
 canvas.width = GAME_WIDTH;
-canvas.height = GAME_HEIGHT - TRAIN_HEIGHT;
+canvas.height = GAME_HEIGHT;
 
 // Colors
 const COLORS = {
