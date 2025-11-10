@@ -1,6 +1,6 @@
 // Vlak - Train Puzzle Game
 // JavaScript implementation of the classic Czech game by Miroslav Němeček (1993)
-// Collect wagons with your locomotive!
+// Collect wagons with your locomotive and create a train!
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -9,6 +9,7 @@ const ctx = canvas.getContext('2d');
 const GAME_WIDTH = 640;
 const GAME_HEIGHT = 480;
 const TILE_SIZE = 24;
+const MOVE_DELAY = 150; // ms between moves
 
 // Set canvas size
 canvas.width = GAME_WIDTH;
@@ -18,17 +19,23 @@ canvas.height = GAME_HEIGHT;
 const COLORS = {
   background: '#000',
   wall: '#C44',
-  floor: '#333',
+  floor: '#222',
   goal: '#484',
-  player: '#FFD700',
-  boxBlue: '#4AF',
-  boxGreen: '#4F4',
-  boxYellow: '#FF4',
-  boxRed: '#F44',
+  locomotive: '#E66',
+  wagonBlue: '#4AF',
+  wagonGreen: '#4F4',
+  wagonYellow: '#FF4',
+  wagonRed: '#F44',
   text: '#FFF',
-  trainBg: '#C44',
-  trainBody: '#E66',
   trainWheel: '#333'
+};
+
+// Direction vectors
+const DIRS = {
+  UP: { dx: 0, dy: -1 },
+  DOWN: { dx: 0, dy: 1 },
+  LEFT: { dx: -1, dy: 0 },
+  RIGHT: { dx: 1, dy: 0 }
 };
 
 // Game state
@@ -36,17 +43,20 @@ const game = {
   state: 'menu', // 'menu', 'playing', 'levelComplete', 'passwordEntry'
   currentLevel: 0,
   moves: 0,
-  pushes: 0,
+  wagonsCollected: 0,
+  totalWagons: 0,
   passwordInput: '',
-  showPassword: false
+  showPassword: false,
+  lastMoveTime: 0
 };
 
 // Level state
 let level = null;
-let player = { x: 0, y: 0 };
-let boxes = [];
-let goals = [];
+let locomotive = { x: 0, y: 0, dir: 'RIGHT' };
+let trainCars = []; // Array of {x, y, type} following the locomotive
+let wagons = []; // Wagons to collect
 let walls = [];
+let goal = null; // Exit goal
 let moveHistory = [];
 
 // Input state
@@ -54,10 +64,7 @@ const keys = {
   up: false,
   down: false,
   left: false,
-  right: false,
-  undo: false,
-  restart: false,
-  password: false
+  right: false
 };
 
 // Initialize level
@@ -68,13 +75,14 @@ function initLevel(levelIndex) {
   level = levelData;
   game.currentLevel = levelIndex;
   game.moves = 0;
-  game.pushes = 0;
+  game.wagonsCollected = 0;
   moveHistory = [];
+  trainCars = [];
 
   // Parse level data
-  boxes = [];
-  goals = [];
+  wagons = [];
   walls = [];
+  goal = null;
 
   for (let y = 0; y < level.data.length; y++) {
     const row = level.data[y];
@@ -82,33 +90,25 @@ function initLevel(levelIndex) {
       const char = row[x];
 
       switch (char) {
-        case '@': // Player
-          player.x = x;
-          player.y = y;
+        case '@': // Locomotive (player)
+          locomotive.x = x;
+          locomotive.y = y;
+          locomotive.dir = 'RIGHT';
           break;
-        case '+': // Player on goal
-          player.x = x;
-          player.y = y;
-          goals.push({ x, y });
+        case '$': // Wagon (blue)
+          wagons.push({ x, y, type: 'blue' });
           break;
-        case '$': // Box (blue)
-          boxes.push({ x, y, type: 'blue', onGoal: false });
+        case 'B': // Wagon type 2 (green)
+          wagons.push({ x, y, type: 'green' });
           break;
-        case 'B': // Box type 2 (green)
-          boxes.push({ x, y, type: 'green', onGoal: false });
+        case 'Y': // Wagon type 3 (yellow)
+          wagons.push({ x, y, type: 'yellow' });
           break;
-        case 'Y': // Box type 3 (yellow)
-          boxes.push({ x, y, type: 'yellow', onGoal: false });
+        case 'R': // Wagon type 4 (red)
+          wagons.push({ x, y, type: 'red' });
           break;
-        case 'R': // Box type 4 (red)
-          boxes.push({ x, y, type: 'red', onGoal: false });
-          break;
-        case '*': // Box on goal
-          boxes.push({ x, y, type: 'blue', onGoal: true });
-          goals.push({ x, y });
-          break;
-        case '.': // Goal
-          goals.push({ x, y });
+        case '.': // Goal (exit)
+          goal = { x, y };
           break;
         case '#': // Wall
           walls.push({ x, y });
@@ -117,18 +117,9 @@ function initLevel(levelIndex) {
     }
   }
 
-  // Update box onGoal status
-  updateBoxGoalStatus();
-
+  game.totalWagons = wagons.length;
   game.state = 'playing';
   return true;
-}
-
-// Update which boxes are on goals
-function updateBoxGoalStatus() {
-  boxes.forEach(box => {
-    box.onGoal = goals.some(goal => goal.x === box.x && goal.y === box.y);
-  });
 }
 
 // Check if position is a wall
@@ -136,22 +127,36 @@ function isWall(x, y) {
   return walls.some(wall => wall.x === x && wall.y === y);
 }
 
-// Get box at position
-function getBoxAt(x, y) {
-  return boxes.find(box => box.x === x && box.y === y);
+// Check if position has a wagon
+function getWagonAt(x, y) {
+  return wagons.find(wagon => wagon.x === x && wagon.y === y);
 }
 
-// Check if all boxes are on goals
+// Check if position is occupied by train
+function isTrainAt(x, y) {
+  if (locomotive.x === x && locomotive.y === y) return true;
+  return trainCars.some(car => car.x === x && car.y === y);
+}
+
+// Check if level is complete (all wagons collected and at goal)
 function isLevelComplete() {
-  return boxes.every(box => box.onGoal);
+  if (game.wagonsCollected < game.totalWagons) return false;
+  return locomotive.x === goal.x && locomotive.y === goal.y;
 }
 
-// Move player
-function movePlayer(dx, dy) {
+// Move locomotive
+function moveLocomotive(direction) {
   if (game.state !== 'playing') return;
 
-  const newX = player.x + dx;
-  const newY = player.y + dy;
+  const now = Date.now();
+  if (now - game.lastMoveTime < MOVE_DELAY) return;
+  game.lastMoveTime = now;
+
+  const dir = DIRS[direction];
+  if (!dir) return;
+
+  const newX = locomotive.x + dir.dx;
+  const newY = locomotive.y + dir.dy;
 
   // Check bounds
   if (newX < 0 || newY < 0 || newX >= level.width || newY >= level.height) return;
@@ -159,48 +164,53 @@ function movePlayer(dx, dy) {
   // Check wall
   if (isWall(newX, newY)) return;
 
-  // Check box
-  const box = getBoxAt(newX, newY);
-  if (box) {
-    // Try to push box
-    const boxNewX = newX + dx;
-    const boxNewY = newY + dy;
+  // Check if hitting own train
+  if (isTrainAt(newX, newY)) return;
 
-    // Check if box can be pushed
-    if (boxNewX < 0 || boxNewY < 0 || boxNewX >= level.width || boxNewY >= level.height) return;
-    if (isWall(boxNewX, boxNewY)) return;
-    if (getBoxAt(boxNewX, boxNewY)) return; // Another box
+  // Save state for undo
+  moveHistory.push({
+    locomotiveX: locomotive.x,
+    locomotiveY: locomotive.y,
+    locomotiveDir: locomotive.dir,
+    trainCars: JSON.parse(JSON.stringify(trainCars)),
+    wagons: JSON.parse(JSON.stringify(wagons)),
+    wagonsCollected: game.wagonsCollected
+  });
 
-    // Save state for undo
-    moveHistory.push({
-      playerX: player.x,
-      playerY: player.y,
-      boxX: box.x,
-      boxY: box.y,
-      boxIndex: boxes.indexOf(box),
-      isPush: true
-    });
-
-    // Push box
-    box.x = boxNewX;
-    box.y = boxNewY;
-    game.pushes++;
-  } else {
-    // Save state for undo (just player movement)
-    moveHistory.push({
-      playerX: player.x,
-      playerY: player.y,
-      isPush: false
-    });
+  // Move train cars (each car moves to previous position)
+  if (trainCars.length > 0) {
+    for (let i = trainCars.length - 1; i > 0; i--) {
+      trainCars[i].x = trainCars[i - 1].x;
+      trainCars[i].y = trainCars[i - 1].y;
+    }
+    // First car moves to locomotive's old position
+    trainCars[0].x = locomotive.x;
+    trainCars[0].y = locomotive.y;
   }
 
-  // Move player
-  player.x = newX;
-  player.y = newY;
+  // Update locomotive direction
+  locomotive.dir = direction;
+
+  // Move locomotive
+  locomotive.x = newX;
+  locomotive.y = newY;
   game.moves++;
 
-  // Update box goal status
-  updateBoxGoalStatus();
+  // Check if collected a wagon
+  const wagon = getWagonAt(newX, newY);
+  if (wagon) {
+    // Remove wagon from board
+    wagons = wagons.filter(w => w !== wagon);
+
+    // Add wagon to train
+    trainCars.push({
+      x: locomotive.x,
+      y: locomotive.y,
+      type: wagon.type
+    });
+
+    game.wagonsCollected++;
+  }
 
   // Check if level is complete
   if (isLevelComplete()) {
@@ -214,20 +224,13 @@ function undoMove() {
 
   const lastMove = moveHistory.pop();
 
-  // Restore player position
-  player.x = lastMove.playerX;
-  player.y = lastMove.playerY;
-
-  // Restore box if it was pushed
-  if (lastMove.isPush) {
-    const box = boxes[lastMove.boxIndex];
-    box.x = lastMove.boxX;
-    box.y = lastMove.boxY;
-    game.pushes--;
-  }
-
+  locomotive.x = lastMove.locomotiveX;
+  locomotive.y = lastMove.locomotiveY;
+  locomotive.dir = lastMove.locomotiveDir;
+  trainCars = lastMove.trainCars;
+  wagons = lastMove.wagons;
+  game.wagonsCollected = lastMove.wagonsCollected;
   game.moves--;
-  updateBoxGoalStatus();
 
   if (game.state === 'levelComplete') {
     game.state = 'playing';
@@ -239,7 +242,7 @@ function getLevelOffset() {
   const levelPixelWidth = level.width * TILE_SIZE;
   const levelPixelHeight = level.height * TILE_SIZE;
   const offsetX = Math.max(0, (GAME_WIDTH - levelPixelWidth) / 2);
-  const offsetY = Math.max(0, (canvas.height - levelPixelHeight - 60) / 2) + 30;
+  const offsetY = Math.max(0, (GAME_HEIGHT - levelPixelHeight - 40) / 2) + 30;
   return { x: offsetX, y: offsetY };
 }
 
@@ -250,15 +253,13 @@ function drawTile(x, y, color, offsetX, offsetY) {
 
   ctx.fillStyle = color;
   ctx.fillRect(pixelX, pixelY, TILE_SIZE, TILE_SIZE);
-  ctx.strokeStyle = '#222';
-  ctx.strokeRect(pixelX, pixelY, TILE_SIZE, TILE_SIZE);
 }
 
 // Draw game
 function draw() {
   // Clear screen
   ctx.fillStyle = COLORS.background;
-  ctx.fillRect(0, 0, GAME_WIDTH, canvas.height);
+  ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
   if (game.state === 'menu') {
     drawMenu();
@@ -278,27 +279,69 @@ function drawMenu() {
   ctx.fillStyle = '#FFD700';
   ctx.font = 'bold 48px Arial';
   ctx.textAlign = 'center';
-  ctx.fillText('VLAK', GAME_WIDTH / 2, 120);
+  ctx.fillText('VLAK', GAME_WIDTH / 2, 100);
 
   ctx.fillStyle = COLORS.text;
-  ctx.font = '24px Arial';
-  ctx.fillText('Train Puzzle Game', GAME_WIDTH / 2, 160);
+  ctx.font = '20px Arial';
+  ctx.fillText('Train Collection Game', GAME_WIDTH / 2, 140);
 
   ctx.font = '16px Arial';
-  ctx.fillText('Based on the classic game by Miroslav Němeček (1993)', GAME_WIDTH / 2, 190);
+  ctx.fillText('Based on the classic game by Miroslav Němeček (1993)', GAME_WIDTH / 2, 170);
 
-  // Draw train
-  drawTrain(GAME_WIDTH / 2 - 60, 220);
+  // Draw mini locomotive
+  drawMiniLocomotive(GAME_WIDTH / 2 - 40, 200);
 
   ctx.font = '20px Arial';
   ctx.fillStyle = '#FFD700';
-  ctx.fillText('Press SPACE to start', GAME_WIDTH / 2, 320);
-  ctx.fillText('Press P for password', GAME_WIDTH / 2, 360);
+  ctx.fillText('Drive your locomotive and collect all wagons!', GAME_WIDTH / 2, 280);
+  ctx.fillText('Then return to the goal to complete the level.', GAME_WIDTH / 2, 310);
 
-  ctx.font = '16px Arial';
+  ctx.font = '22px Arial';
+  ctx.fillStyle = '#4F4';
+  ctx.fillText('Press SPACE to start', GAME_WIDTH / 2, 360);
+  ctx.fillText('Press P for password', GAME_WIDTH / 2, 395);
+
+  ctx.font = '14px Arial';
   ctx.fillStyle = '#AAA';
-  ctx.fillText('Controls: Arrow keys to move', GAME_WIDTH / 2, 400);
-  ctx.fillText('U = Undo, R = Restart, P = Password', GAME_WIDTH / 2, 420);
+  ctx.fillText('Controls: Arrow keys to move | U = Undo | R = Restart', GAME_WIDTH / 2, 440);
+}
+
+// Draw mini locomotive
+function drawMiniLocomotive(x, y) {
+  // Body
+  ctx.fillStyle = COLORS.locomotive;
+  ctx.fillRect(x, y, 80, 40);
+
+  // Cabin
+  ctx.fillStyle = '#F88';
+  ctx.fillRect(x + 50, y - 10, 25, 15);
+
+  // Window
+  ctx.fillStyle = '#333';
+  ctx.fillRect(x + 55, y - 7, 8, 10);
+  ctx.fillRect(x + 65, y - 7, 8, 10);
+
+  // Wheels
+  ctx.fillStyle = COLORS.trainWheel;
+  ctx.beginPath();
+  ctx.arc(x + 15, y + 40, 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x + 35, y + 40, 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(x + 60, y + 40, 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Smokestack
+  ctx.fillStyle = '#555';
+  ctx.fillRect(x + 10, y - 8, 6, 8);
+
+  // Smoke
+  ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
+  ctx.beginPath();
+  ctx.arc(x + 13, y - 12, 4, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 // Draw password entry screen
@@ -349,118 +392,127 @@ function drawLevel() {
     }
   }
 
-  // Draw goals
-  ctx.fillStyle = COLORS.goal;
-  goals.forEach(goal => {
+  // Draw goal
+  if (goal) {
     const pixelX = offset.x + goal.x * TILE_SIZE;
     const pixelY = offset.y + goal.y * TILE_SIZE;
-    ctx.fillRect(pixelX + 4, pixelY + 4, TILE_SIZE - 8, TILE_SIZE - 8);
-  });
+
+    ctx.fillStyle = COLORS.goal;
+    ctx.fillRect(pixelX + 2, pixelY + 2, TILE_SIZE - 4, TILE_SIZE - 4);
+
+    // Draw flag
+    ctx.fillStyle = '#4F4';
+    ctx.fillRect(pixelX + TILE_SIZE / 2, pixelY + 4, 2, TILE_SIZE - 8);
+    ctx.fillStyle = '#FF4';
+    ctx.beginPath();
+    ctx.moveTo(pixelX + TILE_SIZE / 2, pixelY + 4);
+    ctx.lineTo(pixelX + TILE_SIZE / 2 + 10, pixelY + 9);
+    ctx.lineTo(pixelX + TILE_SIZE / 2, pixelY + 14);
+    ctx.fill();
+  }
 
   // Draw walls
   walls.forEach(wall => {
-    drawTile(wall.x, wall.y, COLORS.wall, offset.x, offset.y);
-    // Add 3D effect
     const pixelX = offset.x + wall.x * TILE_SIZE;
     const pixelY = offset.y + wall.y * TILE_SIZE;
+
+    ctx.fillStyle = COLORS.wall;
+    ctx.fillRect(pixelX, pixelY, TILE_SIZE, TILE_SIZE);
+
+    // 3D effect
     ctx.fillStyle = '#F66';
-    ctx.fillRect(pixelX + 2, pixelY + 2, TILE_SIZE - 4, 4);
+    ctx.fillRect(pixelX + 2, pixelY + 2, TILE_SIZE - 4, 3);
     ctx.fillStyle = '#822';
-    ctx.fillRect(pixelX + 2, pixelY + TILE_SIZE - 6, TILE_SIZE - 4, 4);
+    ctx.fillRect(pixelX + 2, pixelY + TILE_SIZE - 5, TILE_SIZE - 4, 3);
   });
 
-  // Draw boxes
-  boxes.forEach(box => {
-    const pixelX = offset.x + box.x * TILE_SIZE;
-    const pixelY = offset.y + box.y * TILE_SIZE;
+  // Draw wagons
+  wagons.forEach(wagon => {
+    const pixelX = offset.x + wagon.x * TILE_SIZE;
+    const pixelY = offset.y + wagon.y * TILE_SIZE;
 
-    let color = COLORS.boxBlue;
-    if (box.type === 'green') color = COLORS.boxGreen;
-    else if (box.type === 'yellow') color = COLORS.boxYellow;
-    else if (box.type === 'red') color = COLORS.boxRed;
+    let color = COLORS.wagonBlue;
+    if (wagon.type === 'green') color = COLORS.wagonGreen;
+    else if (wagon.type === 'yellow') color = COLORS.wagonYellow;
+    else if (wagon.type === 'red') color = COLORS.wagonRed;
 
-    // Box body
+    // Wagon body
     ctx.fillStyle = color;
-    ctx.fillRect(pixelX + 3, pixelY + 3, TILE_SIZE - 6, TILE_SIZE - 6);
+    ctx.fillRect(pixelX + 4, pixelY + 6, TILE_SIZE - 8, TILE_SIZE - 10);
 
-    // Box highlight
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    ctx.fillRect(pixelX + 5, pixelY + 5, TILE_SIZE - 14, TILE_SIZE - 14);
-
-    // Box shadow
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-    ctx.fillRect(pixelX + 15, pixelY + 15, TILE_SIZE - 17, TILE_SIZE - 17);
+    // Wheels
+    ctx.fillStyle = COLORS.trainWheel;
+    ctx.beginPath();
+    ctx.arc(pixelX + 8, pixelY + TILE_SIZE - 3, 3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(pixelX + TILE_SIZE - 8, pixelY + TILE_SIZE - 3, 3, 0, Math.PI * 2);
+    ctx.fill();
 
     ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(pixelX + 3, pixelY + 3, TILE_SIZE - 6, TILE_SIZE - 6);
+    ctx.lineWidth = 1;
+    ctx.strokeRect(pixelX + 4, pixelY + 6, TILE_SIZE - 8, TILE_SIZE - 10);
   });
 
-  // Draw player (Golem)
-  const pixelX = offset.x + player.x * TILE_SIZE;
-  const pixelY = offset.y + player.y * TILE_SIZE;
+  // Draw train cars
+  trainCars.forEach(car => {
+    const pixelX = offset.x + car.x * TILE_SIZE;
+    const pixelY = offset.y + car.y * TILE_SIZE;
 
-  // Body
-  ctx.fillStyle = COLORS.player;
-  ctx.fillRect(pixelX + 6, pixelY + 8, TILE_SIZE - 12, TILE_SIZE - 10);
+    let color = COLORS.wagonBlue;
+    if (car.type === 'green') color = COLORS.wagonGreen;
+    else if (car.type === 'yellow') color = COLORS.wagonYellow;
+    else if (car.type === 'red') color = COLORS.wagonRed;
 
-  // Head
-  ctx.beginPath();
-  ctx.arc(pixelX + TILE_SIZE / 2, pixelY + 8, 6, 0, Math.PI * 2);
-  ctx.fill();
+    // Wagon body
+    ctx.fillStyle = color;
+    ctx.fillRect(pixelX + 4, pixelY + 6, TILE_SIZE - 8, TILE_SIZE - 10);
 
-  // Eyes
-  ctx.fillStyle = '#000';
-  ctx.fillRect(pixelX + 9, pixelY + 6, 2, 2);
-  ctx.fillRect(pixelX + 13, pixelY + 6, 2, 2);
+    // Connection link
+    ctx.fillStyle = '#666';
+    ctx.fillRect(pixelX + TILE_SIZE / 2 - 1, pixelY + TILE_SIZE / 2 - 1, 2, 6);
 
-  // Arms
-  ctx.fillStyle = COLORS.player;
-  ctx.fillRect(pixelX + 4, pixelY + 12, 3, 6);
-  ctx.fillRect(pixelX + TILE_SIZE - 7, pixelY + 12, 3, 6);
-}
+    // Wheels
+    ctx.fillStyle = COLORS.trainWheel;
+    ctx.beginPath();
+    ctx.arc(pixelX + 8, pixelY + TILE_SIZE - 3, 3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(pixelX + TILE_SIZE - 8, pixelY + TILE_SIZE - 3, 3, 0, Math.PI * 2);
+    ctx.fill();
 
-// Draw train at bottom
-function drawTrain(x, y) {
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(pixelX + 4, pixelY + 6, TILE_SIZE - 8, TILE_SIZE - 10);
+  });
+
+  // Draw locomotive
+  const pixelX = offset.x + locomotive.x * TILE_SIZE;
+  const pixelY = offset.y + locomotive.y * TILE_SIZE;
+
   // Locomotive body
-  ctx.fillStyle = COLORS.trainBody;
-  ctx.fillRect(x, y, 120, 30);
+  ctx.fillStyle = COLORS.locomotive;
+  ctx.fillRect(pixelX + 3, pixelY + 5, TILE_SIZE - 6, TILE_SIZE - 8);
 
   // Cabin
   ctx.fillStyle = '#F88';
-  ctx.fillRect(x + 70, y - 15, 40, 15);
+  let cabinX = pixelX + 12;
+  if (locomotive.dir === 'LEFT') cabinX = pixelX + 3;
+  ctx.fillRect(cabinX, pixelY + 2, 8, 6);
 
-  // Window
-  ctx.fillStyle = '#333';
-  ctx.fillRect(x + 75, y - 12, 12, 10);
-  ctx.fillRect(x + 92, y - 12, 12, 10);
+  // Smokestack
+  ctx.fillStyle = '#555';
+  let stackX = pixelX + 6;
+  if (locomotive.dir === 'LEFT') stackX = pixelX + 14;
+  ctx.fillRect(stackX, pixelY, 3, 5);
 
   // Wheels
   ctx.fillStyle = COLORS.trainWheel;
   ctx.beginPath();
-  ctx.arc(x + 20, y + 30, 8, 0, Math.PI * 2);
+  ctx.arc(pixelX + 7, pixelY + TILE_SIZE - 2, 3, 0, Math.PI * 2);
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(x + 45, y + 30, 8, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(x + 85, y + 30, 8, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(x + 105, y + 30, 8, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Smokestack
-  ctx.fillStyle = '#555';
-  ctx.fillRect(x + 15, y - 10, 8, 10);
-
-  // Smoke
-  ctx.fillStyle = 'rgba(200, 200, 200, 0.5)';
-  ctx.beginPath();
-  ctx.arc(x + 19, y - 15, 5, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(x + 15, y - 22, 6, 0, Math.PI * 2);
+  ctx.arc(pixelX + TILE_SIZE - 7, pixelY + TILE_SIZE - 2, 3, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -475,38 +527,44 @@ function drawHUD() {
   ctx.fillText(`Password: ${level.password}`, 150, 20);
 
   // Stats
-  ctx.fillText(`Moves: ${game.moves}`, 10, canvas.height - 10);
-  ctx.fillText(`Pushes: ${game.pushes}`, 120, canvas.height - 10);
+  ctx.fillText(`Moves: ${game.moves}`, 10, GAME_HEIGHT - 10);
+  ctx.fillText(`Wagons: ${game.wagonsCollected}/${game.totalWagons}`, 120, GAME_HEIGHT - 10);
+
+  // Train length indicator
+  if (trainCars.length > 0) {
+    ctx.fillText(`Train: ${trainCars.length + 1} cars`, 280, GAME_HEIGHT - 10);
+  }
 
   // Controls hint
   ctx.textAlign = 'right';
   ctx.font = '12px Arial';
   ctx.fillStyle = '#AAA';
-  ctx.fillText('U=Undo R=Restart P=Password', GAME_WIDTH - 10, canvas.height - 10);
+  ctx.fillText('U=Undo R=Restart P=Password', GAME_WIDTH - 10, GAME_HEIGHT - 10);
 }
 
 // Draw level complete
 function drawLevelComplete() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  ctx.fillRect(0, 0, GAME_WIDTH, canvas.height);
+  ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
   ctx.fillStyle = '#FFD700';
   ctx.font = 'bold 48px Arial';
   ctx.textAlign = 'center';
-  ctx.fillText('Level Complete!', GAME_WIDTH / 2, canvas.height / 2 - 50);
+  ctx.fillText('Level Complete!', GAME_WIDTH / 2, GAME_HEIGHT / 2 - 60);
 
   ctx.fillStyle = COLORS.text;
   ctx.font = '24px Arial';
-  ctx.fillText(`Moves: ${game.moves}  Pushes: ${game.pushes}`, GAME_WIDTH / 2, canvas.height / 2);
+  ctx.fillText(`Moves: ${game.moves}`, GAME_WIDTH / 2, GAME_HEIGHT / 2 - 10);
+  ctx.fillText(`Train length: ${trainCars.length + 1} cars`, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 20);
 
   ctx.font = '20px Arial';
   ctx.fillStyle = '#FFD700';
   if (game.currentLevel < getTotalLevels() - 1) {
-    ctx.fillText('Press SPACE for next level', GAME_WIDTH / 2, canvas.height / 2 + 50);
+    ctx.fillText('Press SPACE for next level', GAME_WIDTH / 2, GAME_HEIGHT / 2 + 60);
   } else {
-    ctx.fillText('Congratulations! All levels completed!', GAME_WIDTH / 2, canvas.height / 2 + 50);
+    ctx.fillText('Congratulations! All levels completed!', GAME_WIDTH / 2, GAME_HEIGHT / 2 + 60);
   }
-  ctx.fillText('Press R to restart', GAME_WIDTH / 2, canvas.height / 2 + 80);
+  ctx.fillText('Press R to restart', GAME_WIDTH / 2, GAME_HEIGHT / 2 + 90);
 }
 
 // Game loop
@@ -550,19 +608,19 @@ document.addEventListener('keydown', (e) => {
   } else if (game.state === 'playing') {
     switch(e.key) {
       case 'ArrowUp':
-        movePlayer(0, -1);
+        moveLocomotive('UP');
         e.preventDefault();
         break;
       case 'ArrowDown':
-        movePlayer(0, 1);
+        moveLocomotive('DOWN');
         e.preventDefault();
         break;
       case 'ArrowLeft':
-        movePlayer(-1, 0);
+        moveLocomotive('LEFT');
         e.preventDefault();
         break;
       case 'ArrowRight':
-        movePlayer(1, 0);
+        moveLocomotive('RIGHT');
         e.preventDefault();
         break;
       case 'u':
