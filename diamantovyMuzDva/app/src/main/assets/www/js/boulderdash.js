@@ -693,8 +693,8 @@ Boulderdash = function() {
   //=========================================================================
 
   var game   = new Game(),       // the boulderdash game logic (rendering independent)
-      render = new Render(game), // the boulderdash game renderer
-      // stats  = new Stats();      // the FPS counter widget
+      render = new Render(game); // the boulderdash game renderer
+      // stats  = new Stats();    // the FPS counter widget
 
   //-------------------------------------------------------------------------
 
